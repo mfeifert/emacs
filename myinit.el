@@ -77,6 +77,8 @@
      ("is" "%(binary) -f %(ledger-file) bal Income Expenses -p 'this month'" )
      ("reg" "%(binary) -f %(ledger-file) reg")))
 
+(use-package magit)
+
 (use-package cobol-mode
   :init
   (setq auto-mode-alist

@@ -60,7 +60,7 @@
 
 (use-package hydra)
   :init
-  (load "~/docs/sys/config/emacs/hydra.el")
+  (load "~/.config/emacs/maf/hydra.el")
 
 (use-package org-superstar
   :init

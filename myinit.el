@@ -33,7 +33,7 @@
 (load-theme 'catppuccin :no-confirm)
 (desktop-save-mode 1)
 
-(setq display-line-numbers 'relative)
+(setq display-line-numbers-type 'relative)
 ;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
 ;; (evil-set-initial-state 'special-mode 'emacs)
@@ -44,9 +44,9 @@
 
 ;;; Packages
 
-(use-package catppuccin-theme
+(use-package catppuccin-theme)
   :config
-  (load-theme 'catppuccin :no-confirm))
+  ;; (load-theme 'catppuccin :no-confirm))
 
 (use-package which-key
   :config (which-key-mode))

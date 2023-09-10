@@ -33,6 +33,7 @@
 (load-theme 'catppuccin :no-confirm)
 (desktop-save-mode 1)
 
+(global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 ;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)

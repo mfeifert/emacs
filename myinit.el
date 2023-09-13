@@ -4,12 +4,12 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  (add-to-list 'load-path "~/.config/emacs/elpa/")
-  (require 'use-package))
+;; (eval-when-compile
+;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
+;;   (add-to-list 'load-path "~/.config/emacs/elpa/")
+;;   (require 'use-package))
 
-(require 'use-package-ensure)
+;; (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
 ;;; General settings
@@ -29,39 +29,50 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (setq ring-bell-function 'ignore)
-;;(load-theme 'modus-vivendi t)
-(load-theme 'catppuccin :no-confirm)
 (desktop-save-mode 1)
 
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
-;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
-;; (evil-set-initial-state 'special-mode 'emacs)
 
 ;; (put 'dired-find-alternate-file 'disabled nil)
 (setq ido-everywhere t)
 (ido-mode t)
 
+
 ;;; Packages
 
-(use-package catppuccin-theme)
+(use-package catppuccin-theme
   :config
-  ;; (load-theme 'catppuccin :no-confirm))
+  (load-theme 'catppuccin :no-confirm))
 
 (use-package which-key
-  :config (which-key-mode))
+  :config
+  (which-key-setup-minibuffer)
+  (setq max-mini-window-height 0.5)
+  (which-key-mode))
 
 (use-package evil
   :init
+  (setq evil-want-integration t)
   ;; make tab work in org-mode
   (setq evil-want-C-i-jump nil)
-  ;; turn off evil-mode for special buffer types
-  :config (evil-mode))
+  (setq evil-want-C-u-scroll t)
+  :config
+  (evil-mode 1)
+  ;; (lookup-key global-map (kbd "C-c"))
+  (evil-global-set-key 'normal (kbd "SPC c") (lookup-key global-map (kbd "C-c")))  ;; not working
+  (evil-global-set-key 'normal (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
+  (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
+  (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
+  (evil-global-set-key 'motion (kbd "SPC") nil)
+  (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
+  (evil-global-set-key 'motion (kbd "SPC c") (lookup-key global-map (kbd "C-c")))  ;; not working
+  (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
 
-(use-package hydra)
-  :init
-  (load "~/.config/emacs/maf/hydra.el")
+  (evil-set-initial-state 'special-mode 'emacs)
+  (evil-set-initial-state 'Info-mode 'emacs)
+  )
 
 (use-package org-superstar
   :init
@@ -80,45 +91,20 @@
 
 (use-package magit)
 
-(use-package cobol-mode
-  :init
-  (setq auto-mode-alist
-        (append
-         '(("\\.cob\\'" . cobol-mode)
-           ("\\.cbl\\'" . cobol-mode)
-           ("\\.cpy\\'" . cobol-mode))
-         auto-mode-alist)))
 
-(use-package slime
-  :init
-  (setq inferior-lisp-program "sbcl"))
-
-
-
-;;; Org-roam (copied from System Crafters)
-
-;(defalias 'list-buffers 'ibuffer)
-;;
-;; (use-package org-roam
-;;   :ensure t
+;; (use-package hydra)
 ;;   :init
-;;   (setq org-roam-v2-ack t)
-;;   :custom
-;;   (org-roam-directory "~/RoamNotes")
-;;   (org-roam-completion-everywhere t)
-;;   (org-roam-dailies-capture-templates
-;;     '(("d" "default" entry "* %<%I:%M %p>: %?"
-;;        :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-;;   :bind (("C-c n l" . org-roam-buffer-toggle)
-;;          ("C-c n f" . org-roam-node-find)
-;;          ("C-c n i" . org-roam-node-insert)
-;;          :map org-mode-map
-;;          ("C-M-i" . completion-at-point)
-;;          :map org-roam-dailies-map
-;;          ("Y" . org-roam-dailies-capture-yesterday)
-;;          ("T" . org-roam-dailies-capture-tomorrow))
-;;   :bind-keymap
-;;   ("C-c n d" . org-roam-dailies-map)
-;;   :config
-;;   (require 'org-roam-dailies) ;; Ensure the keymap is available
-;;   (org-roam-db-autosync-mode))
+;;   (load "~/.config/emacs/maf/hydra.el")
+
+;; (use-package slime
+;;   :init
+;;   (setq inferior-lisp-program "sbcl"))
+
+;; (use-package cobol-mode
+;;   :init
+;;   (setq auto-mode-alist
+;;         (append
+;;          '(("\\.cob\\'" . cobol-mode)
+;;            ("\\.cbl\\'" . cobol-mode)
+;;            ("\\.cpy\\'" . cobol-mode))
+;;          auto-mode-alist)))

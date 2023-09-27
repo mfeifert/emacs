@@ -34,6 +34,7 @@
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 (add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-hide-emphasis-markers t)
 
 ;; (put 'dired-find-alternate-file 'disabled nil)
 (setq ido-everywhere t)
@@ -63,12 +64,18 @@
   ;; (lookup-key global-map (kbd "C-c"))
   (evil-global-set-key 'normal (kbd "SPC c") (lookup-key global-map (kbd "C-c")))  ;; not working
   (evil-global-set-key 'normal (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
-  (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
-  (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
   (evil-global-set-key 'motion (kbd "SPC") nil)
   (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
   (evil-global-set-key 'motion (kbd "SPC c") (lookup-key global-map (kbd "C-c")))  ;; not working
   (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
+
+  (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
+  (evil-global-set-key 'normal (kbd "SPC SPC q") 'save-buffers-kill-terminal)
+  (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
+  (evil-global-set-key 'normal (kbd "SPC SPC t") 'tab-bar-mode)
+  (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
+  (evil-global-set-key 'normal (kbd "SPC SPC e") 'org-toggle-emphasis)
+  (evil-global-set-key 'normal (kbd "SPC SPC l") 'org-open-at-point)
 
   (evil-set-initial-state 'special-mode 'emacs)
   (evil-set-initial-state 'Info-mode 'emacs)
@@ -91,7 +98,6 @@
 
 (use-package magit)
 
-
 ;; (use-package hydra)
 ;;   :init
 ;;   (load "~/.config/emacs/maf/hydra.el")
@@ -108,3 +114,12 @@
 ;;            ("\\.cbl\\'" . cobol-mode)
 ;;            ("\\.cpy\\'" . cobol-mode))
 ;;          auto-mode-alist)))
+
+(defun org-toggle-emphasis ()
+  "Toggle hiding/showing of org emphasize markers."
+  (interactive)
+  (if org-hide-emphasis-markers
+      (set-variable 'org-hide-emphasis-markers nil)
+    (set-variable 'org-hide-emphasis-markers t))
+  (org-mode-restart))
+;; (define-key org-mode-map (kbd "SPC SPC e") 'org-toggle-emphasis)

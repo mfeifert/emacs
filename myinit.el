@@ -30,6 +30,7 @@
 (scroll-bar-mode -1)
 (setq ring-bell-function 'ignore)
 (desktop-save-mode 1)
+(global-auto-revert-mode)
 
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)

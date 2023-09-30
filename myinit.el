@@ -31,11 +31,16 @@
 (setq ring-bell-function 'ignore)
 (desktop-save-mode 1)
 (global-auto-revert-mode)
+(setq split-width-threshold 0)
+(setq split-height-threshold nil)
 
 (global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (setq org-hide-emphasis-markers t)
+(custom-set-variables
+ '(org-directory "~/docs/org")
+ '(org-agenda-files (list org-directory)))
 
 ;; (put 'dired-find-alternate-file 'disabled nil)
 (setq ido-everywhere t)

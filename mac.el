@@ -1,10 +1,5 @@
-(load "~/.config/emacs/maf/myinit.el")
+(org-babel-load-file (expand-file-name "~/.config/emacs/maf/maf-init.org"))
 
-(add-to-list 'default-frame-alist '(left . 335))
-(add-to-list 'default-frame-alist '(top . 50))
-(add-to-list 'default-frame-alist '(height . 94))
-(add-to-list 'default-frame-alist '(width . 268))
+(setq default-frame-alist '((height . 80) (width . 200)))
 
-(set-frame-font "Hack Nerd Font 12" nil t)
-
-(find-file "~/.config/emacs/maf/mac.el")
+(set-frame-font "Hack Nerd Font 13" nil t)

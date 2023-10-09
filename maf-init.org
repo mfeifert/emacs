@@ -1,0 +1,187 @@
+* Package
+
+#+begin_src emacs-lisp 
+
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize)
+
+  (require 'use-package-ensure) 
+  (setq use-package-always-ensure t)
+
+#+end_src
+
+* Frames
+
+#+begin_src emacs-lisp
+
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (setq ring-bell-function 'ignore)
+
+  (desktop-save-mode t)
+
+#+end_src
+
+* Windows
+
+#+begin_src emacs-lisp 
+
+  (scroll-bar-mode -1)
+  (setq split-width-threshold 0)
+  (setq split-height-threshold nil)
+  (setq help-window-select t)
+
+  (use-package spacious-padding
+    :config
+    (spacious-padding-mode))
+
+#+end_src
+
+* Buffers
+
+#+begin_src emacs-lisp 
+
+  (global-display-line-numbers-mode)
+  (setq display-line-numbers-type 'visual)
+  (setq-default display-line-numbers-width 4)
+
+#+end_src
+
+* Files
+
+#+begin_src emacs-lisp 
+
+  (global-auto-revert-mode t)
+  (setq auto-save-default nil)
+  (setq make-backup-files nil)
+
+#+end_src
+
+* Appearance
+
+#+begin_src emacs-lisp
+
+  (use-package ef-themes
+    :config
+    (ef-themes-select 'ef-summer))
+
+#+end_src
+
+* Completion
+** ivy
+
+- Ivy fuzzy find?
+- Ivy buffer height?
+- Ivy C-k and C-j for up and down?
+- Ivy history?
+
+#+begin_src emacs-lisp
+
+  (use-package ivy
+    :config
+    (ivy-mode 1))
+
+#+end_src
+
+** vertico
+
+#+begin_src emacs-lisp
+
+;;  (use-package vertico
+;;    :config
+;;    (vertico-mode 1))
+
+#+end_src
+
+** mct
+
+#+begin_src emacs-lisp
+
+;;  (use-package mct
+;;    :config
+;;    (setq mct-minimum-input 0)
+;;    (setq mct-live-update-delay 0)
+;;    (setq mct-hide-completion-mode-line t)
+;;    (setq mct-persist-dynamic-completion t)
+;;    (mct-mode))
+
+#+end_src
+
+* Evil
+
+#+begin_src emacs-lisp 
+
+  (use-package evil
+    :init
+    (setq evil-want-C-i-jump nil) ; Make TAB work for org-cycle
+    (setq evil-want-C-u-scroll t)
+    :config
+    (evil-mode 1)
+    (evil-set-initial-state 'special-mode 'emacs)
+    (evil-set-initial-state 'Info-mode 'emacs))
+
+#+end_src
+
+* Org
+
+#+begin_src emacs-lisp 
+
+  (setq org-startup-indented t)
+  (setq org-startup-folded t)
+  (setq org-hide-emphasis-markers t)
+  (setq org-return-follows-link t)
+
+  (setq org-directory "~/docs/org")
+  (setq org-agenda-files (list org-directory))
+
+#+end_src
+
+* which-key
+
+#+begin_src emacs-lisp 
+
+  (use-package which-key
+    :config
+    (which-key-mode 1))
+
+#+end_src
+
+* Ledger
+
+- [ ] Do not display line numbers in ledger-report-mode
+
+#+begin_src emacs-lisp 
+
+  (use-package ledger-mode
+    :hook (ledger-report . display-line-numbers-mode)
+    :config
+    (setq ledger-default-date-format "%Y-%m-%d")
+    (setq ledger-reports
+          '(("bs" "%(binary) -f %(ledger-file) bal Assets Liabilities")
+            ("is" "%(binary) -f %(ledger-file) bal Income Expenses -p 'this month'" )
+            ("reg" "%(binary) -f %(ledger-file) reg"))))
+
+#+end_src
+
+* Keymaps
+
+#+begin_src emacs-lisp 
+
+  ;; Unset RET to use with org-return-follows-link
+  (evil-global-set-key 'motion (kbd "RET") nil)
+  ;; Unset SPC to use as leader key in evil-mode
+  (evil-global-set-key 'motion (kbd "SPC") nil)
+
+  ;; SPC layer
+  (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
+  (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
+  (evil-global-set-key 'motion (kbd "SPC t") 'ef-themes-select)
+  (evil-global-set-key 'normal (kbd "SPC l") 'ledger-report)
+
+  ;; SPC SPC layer
+  (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
+  (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
+  (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
+
+#+end_src

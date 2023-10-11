@@ -62,9 +62,9 @@
 
 #+begin_src emacs-lisp
 
-  (use-package ef-themes
-    :config
-    (ef-themes-select 'ef-summer))
+  (use-package ef-themes)
+
+  (use-package standard-themes)
 
 #+end_src
 
@@ -193,6 +193,26 @@
 
 #+end_src
 
+* markdown-mode
+
+Used by Eglot to format documentation.
+
+#+begin_src emacs-lisp
+
+  (use-package mardown-mode)
+  
+#+end_src
+
+* yasnippet
+
+Used by Eglot for snipped-based autocomplete.
+
+#+begin_src emacs-lisp
+
+  (use-package yasnippet)
+  
+#+end_src
+
 * Keymaps
 
 #+begin_src emacs-lisp 
@@ -208,10 +228,16 @@
   ;; SPC layer
   (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
   (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
-  (evil-global-set-key 'motion (kbd "SPC t") 'ef-themes-select)
   (evil-global-set-key 'normal (kbd "SPC l") 'ledger-report)
 
-  ;; SPC SPC layer
+  ;; Themes
+  ;; (evil-global-set-key 'motion (kbd "SPC t m d") 'modus-themes-load-operandi)
+  (evil-global-set-key 'motion (kbd "SPC t") 'ef-themes-select)
+  ;; (evil-global-set-key 'motion (kbd "SPC t e d") 'ef-themes-select-dark)
+  ;; (evil-global-set-key 'motion (kbd "SPC t e l") 'ef-themes-select-light)
+
+  ;; SPC
+  SPC layer
   (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
   (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
   (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
@@ -230,4 +256,14 @@
     (split-window-right)
     (switch-to-buffer "ccna.org"))
   
+#+end_src
+
+#+begin_src emacs-lisp
+
+  (defun maf-load-theme ()
+    "Disable current theme and load new theme."
+    (interactive)
+    (disable-theme)
+    (load-theme))
+
 #+end_src

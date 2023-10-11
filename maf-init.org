@@ -199,13 +199,13 @@ Used by Eglot to format documentation.
 
 #+begin_src emacs-lisp
 
-  (use-package mardown-mode)
+  (use-package markdown-mode)
   
 #+end_src
 
 * yasnippet
 
-Used by Eglot for snipped-based autocomplete.
+Used by Eglot for snippet-based autocomplete.
 
 #+begin_src emacs-lisp
 
@@ -236,8 +236,7 @@ Used by Eglot for snipped-based autocomplete.
   ;; (evil-global-set-key 'motion (kbd "SPC t e d") 'ef-themes-select-dark)
   ;; (evil-global-set-key 'motion (kbd "SPC t e l") 'ef-themes-select-light)
 
-  ;; SPC
-  SPC layer
+  ;; SPC SPC layer
   (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
   (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
   (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
@@ -248,7 +247,7 @@ Used by Eglot for snipped-based autocomplete.
 
 #+begin_src emacs-lisp
 
-  (defun cisco ()
+  (defun maf-cisco ()
     "Open buffers associated with Cisco CCNA study
      in two windows side-by-side."
     (interactive)

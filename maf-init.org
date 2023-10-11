@@ -90,6 +90,9 @@
 
   (use-package company
     :config
+    (setq company-tooltop-align-annotations t)
+    (setq company-tooltip-limit 20)
+
     (add-hook 'after-init-hook 'global-company-mode))
 
 #+end_src
@@ -129,6 +132,9 @@
 * Eglot
 
 #+begin_src emacs-lisp
+
+  (add-hook 'python-mode-hook 'eglot-ensure)
+
 #+end_src
 
 * Evil

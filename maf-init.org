@@ -84,6 +84,16 @@
 
 #+end_src
 
+** company
+
+#+begin_src emacs-lisp
+
+  (use-package company
+    :config
+    (add-hook 'after-init-hook 'global-company-mode))
+
+#+end_src
+
 ** vertico
 
 #+begin_src emacs-lisp
@@ -106,6 +116,19 @@
 ;;    (setq mct-persist-dynamic-completion t)
 ;;    (mct-mode))
 
+#+end_src
+
+* Tree-sitter
+
+#+begin_quote emacs-lisp
+
+  (require 'treesit)
+
+#+end_quote
+
+* Eglot
+
+#+begin_src emacs-lisp
 #+end_src
 
 * Evil
@@ -154,7 +177,7 @@
 #+begin_src emacs-lisp 
 
   (use-package ledger-mode
-    :hook (ledger-report . display-line-numbers-mode)
+    :hook (ledger-report . display-line-numbers-mode)  ; Not working
     :config
     (setq ledger-default-date-format "%Y-%m-%d")
     (setq ledger-reports
@@ -167,6 +190,9 @@
 * Keymaps
 
 #+begin_src emacs-lisp 
+
+  (evil-global-set-key 'motion (kbd "<f5>") 'recompile)
+  (evil-global-set-key 'motion (kbd "<f6>") 'kill-compilation)
 
   ;; Unset RET to use with org-return-follows-link
   (evil-global-set-key 'motion (kbd "RET") nil)
@@ -184,4 +210,18 @@
   (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
   (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
 
+#+end_src
+
+* Functions
+
+#+begin_src emacs-lisp
+
+  (defun cisco ()
+    "Open buffers associated with Cisco CCNA study
+     in two windows side-by-side."
+    (interactive)
+    (switch-to-buffer "cisco.org")
+    (split-window-right)
+    (switch-to-buffer "ccna.org"))
+  
 #+end_src

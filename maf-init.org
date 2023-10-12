@@ -201,11 +201,20 @@
 
 #+end_src
 
-* Writing mode
+* Focus mode
 
 #+begin_src emacs-lisp
 
-  (use-package olivetti)
+  (use-package olivetti
+    :config
+    (olivetti-set-width 90)
+    )
+
+  (use-package logos
+    :config
+    (setq logos-olivetti t)
+    (setq logos-hide-mode-line t)
+    )
 
 #+end_src
 
@@ -244,6 +253,8 @@ Used by Eglot for snippet-based autocomplete.
   ;; SPC layer
   (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
   (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
+  (evil-global-set-key 'motion (kbd "SPC u") 'universal-argument)  ; C-u set to evil-scroll-up
+  (evil-global-set-key 'normal (kbd "SPC m") 'magit)
   (evil-global-set-key 'normal (kbd "SPC l") 'ledger-report)
   (evil-global-set-key 'normal (kbd "SPC w") 'visual-line-mode)
 

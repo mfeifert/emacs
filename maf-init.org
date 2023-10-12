@@ -152,6 +152,14 @@
 
 #+end_src
 
+* Magit
+
+#+begin_src emacs-lisp
+
+  (use-package magit)
+
+#+end_src
+
 * Org
 
 #+begin_src emacs-lisp 
@@ -193,6 +201,14 @@
 
 #+end_src
 
+* Writing mode
+
+#+begin_src emacs-lisp
+
+  (use-package olivetti)
+
+#+end_src
+
 * markdown-mode
 
 Used by Eglot to format documentation.
@@ -200,7 +216,7 @@ Used by Eglot to format documentation.
 #+begin_src emacs-lisp
 
   (use-package markdown-mode)
-  
+
 #+end_src
 
 * yasnippet
@@ -210,7 +226,7 @@ Used by Eglot for snippet-based autocomplete.
 #+begin_src emacs-lisp
 
   (use-package yasnippet)
-  
+
 #+end_src
 
 * Keymaps
@@ -229,6 +245,7 @@ Used by Eglot for snippet-based autocomplete.
   (evil-global-set-key 'motion (kbd "SPC x") ctl-x-map)
   (evil-global-set-key 'motion (kbd "SPC h") (lookup-key global-map (kbd "C-h")))
   (evil-global-set-key 'normal (kbd "SPC l") 'ledger-report)
+  (evil-global-set-key 'normal (kbd "SPC w") 'visual-line-mode)
 
   ;; Themes
   ;; (evil-global-set-key 'motion (kbd "SPC t m d") 'modus-themes-load-operandi)
@@ -239,7 +256,6 @@ Used by Eglot for snippet-based autocomplete.
   ;; SPC SPC layer
   (evil-global-set-key 'normal (kbd "SPC SPC s") 'save-buffer)
   (evil-global-set-key 'normal (kbd "SPC SPC f") 'find-file)
-  (evil-global-set-key 'normal (kbd "SPC SPC w") 'visual-line-mode)
 
 #+end_src
 
@@ -252,9 +268,11 @@ Used by Eglot for snippet-based autocomplete.
      in two windows side-by-side."
     (interactive)
     (switch-to-buffer "cisco.org")
+    (visual-line-mode 1)
     (split-window-right)
-    (switch-to-buffer "ccna.org"))
-  
+    (switch-to-buffer "ccna.org")
+    (visual-line-mode 1))
+
 #+end_src
 
 #+begin_src emacs-lisp

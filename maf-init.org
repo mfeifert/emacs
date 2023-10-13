@@ -46,6 +46,9 @@
   (setq display-line-numbers-type 'visual)
   (setq-default display-line-numbers-width 4)
 
+  ;; minibuffer history
+  (savehist-mode 1)
+
 #+end_src
 
 * Files
@@ -55,6 +58,15 @@
   (global-auto-revert-mode t)
   (setq auto-save-default nil)
   (setq make-backup-files nil)
+  (save-place-mode 1)
+
+#+end_src
+
+* Dired
+
+#+begin_src emacs-lisp
+
+  (setq dired-kill-when-opening-new-dired-buffer t)
 
 #+end_src
 
@@ -148,7 +160,8 @@
     :config
     (evil-mode 1)
     (evil-set-initial-state 'special-mode 'emacs)
-    (evil-set-initial-state 'Info-mode 'emacs))
+    (evil-set-initial-state 'Info-mode 'emacs)
+    (evil-set-initial-state 'dired-mode 'emacs))
 
 #+end_src
 

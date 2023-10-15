@@ -43,11 +43,21 @@
 #+begin_src emacs-lisp 
 
   (global-display-line-numbers-mode)
-  (setq display-line-numbers-type 'visual)
+  ;;  (setq display-line-numbers-type 'visual)  ; for Evil mode
+  (setq display-line-numbers-type 'absolute)  ; for Emacs mode
   (setq-default display-line-numbers-width 4)
+  (electric-pair-mode)
 
   ;; minibuffer history
   (savehist-mode 1)
+
+#+end_src
+
+* Mode line
+
+#+begin_src emacs-lisp
+
+  (setq modus-themes-mode-line '(3d))
 
 #+end_src
 
@@ -74,6 +84,8 @@
 
 #+begin_src emacs-lisp
 
+  (load-theme 'modus-vivendi)
+
   (use-package ef-themes)
 
   (use-package standard-themes)
@@ -81,18 +93,20 @@
 #+end_src
 
 * Completion
-** ivy
-
-- Ivy fuzzy find?
-- Ivy buffer height?
-- Ivy C-k and C-j for up and down?
-- Ivy history?
+** Icomplete
 
 #+begin_src emacs-lisp
 
+;  (fido-vertical-mode)
+
+#+end_src
+
+** ivy
+#+begin_src emacs-lisp
+
   (use-package ivy
-    :config
-    (ivy-mode 1))
+     :config
+     (ivy-mode 1))
 
 #+end_src
 
@@ -106,6 +120,11 @@
     (setq company-tooltip-limit 20)
 
     (add-hook 'after-init-hook 'global-company-mode))
+
+  (use-package company-quickhelp
+    :config
+    (setq company-quickhelp-delay 0)
+    (company-quickhelp-mode))
 
 #+end_src
 
@@ -136,9 +155,6 @@
 * Tree-sitter
 
 #+begin_quote emacs-lisp
-
-  (require 'treesit)
-
 #+end_quote
 
 * Eglot
@@ -158,7 +174,7 @@
     (setq evil-want-C-i-jump nil) ; Make TAB work for org-cycle
     (setq evil-want-C-u-scroll t)
     :config
-    (evil-mode 1)
+    ;(evil-mode 1)
     (evil-set-initial-state 'special-mode 'emacs)
     (evil-set-initial-state 'Info-mode 'emacs)
     (evil-set-initial-state 'dired-mode 'emacs))

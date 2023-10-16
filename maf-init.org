@@ -44,11 +44,8 @@
 
   (global-display-line-numbers-mode)
   (setq display-line-numbers-type 'visual)  ; for Evil mode
-<<<<<<< HEAD
   (setq display-line-numbers-type 'absolute)  ; for Emacs mode
-=======
   ;;  (setq display-line-numbers-type 'absolute)  ; for Emacs mode
->>>>>>> 227aa02709af957167080686b4aa178ee9ab6cea
   (setq-default display-line-numbers-width 4)
   (electric-pair-mode)
 
@@ -61,11 +58,8 @@
 
 #+begin_src emacs-lisp
 
-<<<<<<< HEAD
   ;; (setq modus-themes-mode-line '())
-=======
   (setq modus-themes-mode-line '())
->>>>>>> 227aa02709af957167080686b4aa178ee9ab6cea
 
 #+end_src
 

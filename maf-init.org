@@ -32,9 +32,9 @@
   (setq split-height-threshold nil)
   (setq help-window-select t)
 
-  (use-package spacious-padding
-    :config
-    (spacious-padding-mode))
+  ;; (use-package spacious-padding
+  ;;   :config
+  ;;   (spacious-padding-mode))
 
 #+end_src
 
@@ -43,7 +43,7 @@
 #+begin_src emacs-lisp 
 
   (global-display-line-numbers-mode)
-  ;;  (setq display-line-numbers-type 'visual)  ; for Evil mode
+  (setq display-line-numbers-type 'visual)  ; for Evil mode
   (setq display-line-numbers-type 'absolute)  ; for Emacs mode
   (setq-default display-line-numbers-width 4)
   (electric-pair-mode)
@@ -57,17 +57,16 @@
 
 #+begin_src emacs-lisp
 
-  (setq modus-themes-mode-line '(3d))
+  ;; (setq modus-themes-mode-line '())
 
 #+end_src
 
 * Files
-
 #+begin_src emacs-lisp 
 
-  (global-auto-revert-mode t)
   (setq auto-save-default nil)
   (setq make-backup-files nil)
+  (global-auto-revert-mode t)
   (save-place-mode 1)
 
 #+end_src
@@ -84,8 +83,6 @@
 
 #+begin_src emacs-lisp
 
-  (load-theme 'modus-vivendi)
-
   (use-package ef-themes)
 
   (use-package standard-themes)
@@ -93,11 +90,11 @@
 #+end_src
 
 * Completion
-** Icomplete
+** icomplete
 
 #+begin_src emacs-lisp
 
-;  (fido-vertical-mode)
+  ;; (fido-vertical-mode)
 
 #+end_src
 
@@ -132,9 +129,9 @@
 
 #+begin_src emacs-lisp
 
-;;  (use-package vertico
-;;    :config
-;;    (vertico-mode 1))
+  ;; (use-package vertico
+  ;;   :config
+  ;;   (vertico-mode 1))
 
 #+end_src
 
@@ -142,13 +139,13 @@
 
 #+begin_src emacs-lisp
 
-;;  (use-package mct
-;;    :config
-;;    (setq mct-minimum-input 0)
-;;    (setq mct-live-update-delay 0)
-;;    (setq mct-hide-completion-mode-line t)
-;;    (setq mct-persist-dynamic-completion t)
-;;    (mct-mode))
+  ;; (use-package mct
+  ;;   :config
+  ;;   (setq mct-minimum-input 0)
+  ;;   (setq mct-live-update-delay 0)
+  ;;   (setq mct-hide-completion-mode-line t)
+  ;;   (setq mct-persist-dynamic-completion t)
+  ;;   (mct-mode))
 
 #+end_src
 

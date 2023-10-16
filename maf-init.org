@@ -32,9 +32,9 @@
   (setq split-height-threshold nil)
   (setq help-window-select t)
 
-  (use-package spacious-padding
-    :config
-    (spacious-padding-mode))
+  ;; (use-package spacious-padding
+  ;;   :config
+  ;;   (spacious-padding-mode))
 
 #+end_src
 
@@ -43,8 +43,8 @@
 #+begin_src emacs-lisp 
 
   (global-display-line-numbers-mode)
-  ;;  (setq display-line-numbers-type 'visual)  ; for Evil mode
-  (setq display-line-numbers-type 'absolute)  ; for Emacs mode
+  (setq display-line-numbers-type 'visual)  ; for Evil mode
+  ;;  (setq display-line-numbers-type 'absolute)  ; for Emacs mode
   (setq-default display-line-numbers-width 4)
   (electric-pair-mode)
 
@@ -57,7 +57,7 @@
 
 #+begin_src emacs-lisp
 
-  (setq modus-themes-mode-line '(3d))
+  (setq modus-themes-mode-line '())
 
 #+end_src
 

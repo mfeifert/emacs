@@ -175,7 +175,9 @@
     (evil-mode 1)
     (evil-set-initial-state 'special-mode 'emacs)
     (evil-set-initial-state 'Info-mode 'emacs)
-    (evil-set-initial-state 'dired-mode 'emacs))
+    (evil-set-initial-state 'dired-mode 'emacs)
+    (evil-set-initial-state 'elfeed-search-mode 'emacs)
+    (evil-set-initial-state 'elfeed-show-mode 'emacs))
 
 #+end_src
 
@@ -242,6 +244,14 @@
     (setq logos-olivetti t)
     (setq logos-hide-mode-line t)
     )
+
+#+end_src
+
+* Elfeed
+
+#+begin_src emacs-lisp
+
+  (use-package elfeed)
 
 #+end_src
 

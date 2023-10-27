@@ -31,11 +31,7 @@
   (setq split-width-threshold 0)
   (setq split-height-threshold nil)
   (setq help-window-select t)
-
-  ;; (use-package spacious-padding
-  ;;   :config
-  ;;   (spacious-padding-mode))
-
+  
 #+end_src
 
 * Buffers
@@ -253,7 +249,13 @@
 
 #+begin_src emacs-lisp
 
-  (use-package elfeed)
+  (use-package elfeed
+    :config
+    (setq elfeed-feeds '("https://archlinux.org/feeds/news/"
+                         "https://protesilaos.com/master.xml"
+                         "https://www.schneier.com/feed/atom"
+                         "https://krebsonsecurity.com/feed/"
+                         "https://xkcd.com/atom.xml")))
 
 #+end_src
 

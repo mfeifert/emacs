@@ -42,10 +42,12 @@
 
 #+begin_src emacs-lisp 
 
-  (global-display-line-numbers-mode)
-  (setq display-line-numbers-type 'visual)  ; for Evil mode
-  ;;  (setq display-line-numbers-type 'absolute)  ; for Emacs mode
+  ;; line numbers
+  (setq display-line-numbers-type 'visual)  ; 'visual for Evil mode, 'absolute for Emacs mode
   (setq-default display-line-numbers-width 4)
+  (global-display-line-numbers-mode)
+
+  ;; Auto-close brackets and quotes
   (electric-pair-mode)
 
   ;; minibuffer history
@@ -95,16 +97,16 @@
 
 #+begin_src emacs-lisp
 
-  ;; (fido-vertical-mode)
+  (fido-vertical-mode)
 
 #+end_src
 
 ** ivy
 #+begin_src emacs-lisp
 
-  (use-package ivy
-     :config
-     (ivy-mode 1))
+  ;; (use-package ivy
+     ;; :config
+     ;; (ivy-mode 1))
 
 #+end_src
 

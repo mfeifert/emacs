@@ -31,7 +31,7 @@
   (setq split-width-threshold 0)
   (setq split-height-threshold nil)
   (setq help-window-select t)
-  
+
 #+end_src
 
 * Buffers
@@ -55,12 +55,12 @@
 
 #+begin_src emacs-lisp
 
-  ;; (setq modus-themes-mode-line '())
   (setq modus-themes-mode-line '())
 
 #+end_src
 
 * Files
+
 #+begin_src emacs-lisp 
 
   (setq auto-save-default nil)
@@ -82,6 +82,8 @@
 
 #+begin_src emacs-lisp
 
+  (load-theme 'modus-vivendi)
+  
   (use-package ef-themes)
 
   (use-package standard-themes)
@@ -94,15 +96,6 @@
 #+begin_src emacs-lisp
 
   (fido-vertical-mode)
-
-#+end_src
-
-** ivy
-#+begin_src emacs-lisp
-
-  ;; (use-package ivy
-     ;; :config
-     ;; (ivy-mode 1))
 
 #+end_src
 
@@ -121,43 +114,6 @@
     :config
     (setq company-quickhelp-delay 0)
     (company-quickhelp-mode))
-
-#+end_src
-
-** vertico
-
-#+begin_src emacs-lisp
-
-  ;; (use-package vertico
-  ;;   :config
-  ;;   (vertico-mode 1))
-
-#+end_src
-
-** mct
-
-#+begin_src emacs-lisp
-
-  ;; (use-package mct
-  ;;   :config
-  ;;   (setq mct-minimum-input 0)
-  ;;   (setq mct-live-update-delay 0)
-  ;;   (setq mct-hide-completion-mode-line t)
-  ;;   (setq mct-persist-dynamic-completion t)
-  ;;   (mct-mode))
-
-#+end_src
-
-* Tree-sitter
-
-#+begin_quote emacs-lisp
-#+end_quote
-
-* Eglot
-
-#+begin_src emacs-lisp
-
-  (add-hook 'python-mode-hook 'eglot-ensure)
 
 #+end_src
 
@@ -197,7 +153,9 @@
   (setq org-return-follows-link t)
 
   (setq org-directory "~/docs/org")
-  (setq org-agenda-files (list org-directory))
+  ;(setq org-agenda-files (list org-directory))
+  (setq org-agenda-files '("~/docs/org/time.org"
+                             "~/docs/org/agenda.org"))
 
 #+end_src
 
@@ -259,32 +217,9 @@
 
 #+end_src
 
-* markdown-mode
-
-Used by Eglot to format documentation.
-
-#+begin_src emacs-lisp
-
-  (use-package markdown-mode)
-
-#+end_src
-
-* yasnippet
-
-Used by Eglot for snippet-based autocomplete.
-
-#+begin_src emacs-lisp
-
-  (use-package yasnippet)
-
-#+end_src
-
 * Keymaps
 
 #+begin_src emacs-lisp 
-
-  (evil-global-set-key 'motion (kbd "<f5>") 'recompile)
-  (evil-global-set-key 'motion (kbd "<f6>") 'kill-compilation)
 
   ;; Unset RET to use with org-return-follows-link
   (evil-global-set-key 'motion (kbd "RET") nil)
@@ -301,7 +236,7 @@ Used by Eglot for snippet-based autocomplete.
 
   ;; Themes
   ;; (evil-global-set-key 'motion (kbd "SPC t m d") 'modus-themes-load-operandi)
-  (evil-global-set-key 'motion (kbd "SPC t") 'ef-themes-select)
+  ;; (evil-global-set-key 'motion (kbd "SPC t") 'ef-themes-select)
   ;; (evil-global-set-key 'motion (kbd "SPC t e d") 'ef-themes-select-dark)
   ;; (evil-global-set-key 'motion (kbd "SPC t e l") 'ef-themes-select-light)
 
@@ -324,15 +259,5 @@ Used by Eglot for snippet-based autocomplete.
     (split-window-right)
     (switch-to-buffer "ccna.org")
     (visual-line-mode 1))
-
-#+end_src
-
-#+begin_src emacs-lisp
-
-  (defun maf-load-theme ()
-    "Disable current theme and load new theme."
-    (interactive)
-    (disable-theme)
-    (load-theme))
 
 #+end_src

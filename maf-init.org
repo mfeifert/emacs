@@ -213,7 +213,8 @@
                          "https://protesilaos.com/master.xml"
                          "https://www.schneier.com/feed/atom"
                          "https://krebsonsecurity.com/feed/"
-                         "https://xkcd.com/atom.xml")))
+                         "https://xkcd.com/atom.xml"))
+    (setq elfeed-db-directory "~/.config/emacs/elfeed"))
 
 #+end_src
 
